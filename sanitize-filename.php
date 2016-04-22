@@ -21,12 +21,23 @@
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+  
+  
+  * Sources: 
+ * http://www.geekpress.fr/wordpress/astuce/suppression-accents-media-1903/
+ * https://gist.github.com/herewithme/7704370
+ 
+ * See also Ticket #22363
+ * https://core.trac.wordpress.org/ticket/22363
+ * and #24661 - remove_accents is not removing combining accents
+ * https://core.trac.wordpress.org/ticket/24661
+  
  */
 
 add_filter( 'sanitize_file_name', 'remove_accents', 10, 1 );
 add_filter( 'sanitize_file_name_chars', 'sanitize_file_name_chars', 10, 1 );
 
 function sanitize_file_name_chars( $special_chars = array() ) {
-	$special_chars = array_merge( array( '’', '‘', '“', '”', '«', '»', '‹', '›', '—', 'æ', 'œ', '€' ), $special_chars );
+	$special_chars = array_merge( array( '’', '‘', '“', '”', '«', '»', '‹', '›', '—', 'æ', 'œ', '€','é','à','ç','ä','ö','ü','ï','û','ô','è', '©' ), $special_chars );
 	return $special_chars;
 }
